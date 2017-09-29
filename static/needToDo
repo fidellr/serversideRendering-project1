@@ -1,0 +1,15 @@
+(NEED TO CHANGE TO MAKE THE COOKIE WORK:
+
+(1.the token stored to your cookie first time, then 2nd time when you do 'check-auth' you commit(set_user, loggeduser) with logged user read from cookie
+
+2.then it get set to your state.user at this part it won't break your app yet, but then in side the mutation you also set cookie again to user.token which this time, will be undefined.
+
+3.then the next time when you try to 'check-auth' (refresh/navigate) again, this time your token will be undefined
+so the important part is only, that you have to be sure what you are saving to your cookie,  and later what you get from your cookie)) <- SOLVED
+
+NEED TO BE DONE TOMORROW:
+1. SET THE USER DATA INSIDE THEIR COMPONENT AND USE AXIOS.GET('URL',{headers : {authorization: token}})
+
+
+
+
