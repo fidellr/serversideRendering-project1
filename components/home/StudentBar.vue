@@ -1,9 +1,11 @@
 <template>
     <div>
-        <v-navigation-drawer class="blue-grey lighten-2 " persistent clipped :mini-variant="miniVariant" v-model="drawer" enable-resize-watcher>
-            <v-list class="blue-grey lighten-2">
+        <v-navigation-drawer class="grey lighten-2 " persistent clipped :mini-variant="miniVariant" v-model="drawer" 
+        style="margin-top:65px;"
+        >
+            <v-list class="grey lighten-2">
                 <!-- Home -->
-                <v-list-tile nuxt to="/" exact>
+                <v-list-tile router to="/" exact>
                     <v-list-tile-action>
                         <v-icon>home</v-icon>
                     </v-list-tile-action>
@@ -14,7 +16,7 @@
 
                 <!-- Home -->
                 <!-- Kategori -->
-                <v-list-tile nuxt to="/kategori">
+                <v-list-tile router to="/kategori" exact>
                     <v-list-tile-action>
                         <v-icon>class</v-icon>
                     </v-list-tile-action>
@@ -25,7 +27,7 @@
 
                 <!-- Kategori -->
                 <!-- profile -->
-                <v-list-tile nuxt :to="'/murid/'+dataUser.username+'/profile'">
+                <v-list-tile router :to="'/murid/'+dataUser.username+'/profile'" exact>
                     <v-list-tile-action>
                         <v-icon>location_city</v-icon>
                     </v-list-tile-action>
@@ -36,7 +38,7 @@
 
                 <!-- profile -->
                 <!-- Panduan -->
-                <v-list-tile nuxt to="/">
+                <v-list-tile router to="/" exact>
                     <v-list-tile-action>
                         <v-icon>collections_bookmark</v-icon>
                     </v-list-tile-action>
@@ -46,12 +48,12 @@
                 </v-list-tile>
 
                 <!-- Panduan -->
-                <v-list-tile to="/panduan">
+                <v-list-tile router to="/panduan" exact>
                     <v-list-tile-action>
                         <v-icon>collections_bookmark</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
-                        Jadwal Mengajar
+                        Jadwal Belajar
                     </v-list-tile-content>
                 </v-list-tile>
 
@@ -59,30 +61,30 @@
 
         </v-navigation-drawer>
         <!-- Toolbar -->
-        <v-toolbar class="green accent-1" fixed>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer">
+        <v-toolbar class="grey darken-3" fixed>
+            <v-toolbar-side-icon class="white--text" @click="drawer = !drawer">
             </v-toolbar-side-icon>
             <v-btn icon @click.stop="miniVariant = !miniVariant">
-                <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+                <v-icon class="white--text" v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
             </v-btn>
-            <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-toolbar-title class="white--text" v-text="title"></v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-layout column align-center>
-                <v-text-field solo label="Cari materi.." class="search-bar" append-icon="search"></v-text-field>
-            </v-layout>
+                <v-text-field column align-center solo label="Saya mau belajar.." class="search-bar" hide-details append-icon="search"></v-text-field>
             <v-spacer></v-spacer>
 
-            <div>
-                <v-btn icon small>
-                    <v-icon>add</v-icon>
+            <v-tooltip bottom>
+                <v-btn icon small slot="activator">
+                    <v-icon class="red--text">favorite</v-icon>
                 </v-btn>
-            </div>
+                <span>Menyukai</span>
+            </v-tooltip>
 
-            <div>
-                <v-btn icon small>
-                    <v-icon>notifications</v-icon>
+            <v-tooltip bottom>
+                <v-btn icon small slot="activator">
+                    <v-icon class="white--text">notifications</v-icon>
                 </v-btn>
-            </div>
+                <span>Notifikasi</span>
+            </v-tooltip>
 
             <div class="text-xs-center">
                 <v-menu open-on-hover offset-y :close-on-content-click="false" :nudge-width="100">
@@ -107,15 +109,15 @@
                         </v-list>
 
                         <!-- <v-list>
-                                              <v-list-tile>
-                                                <v-avatar size="32px">
-                                                  <img size="20px" src="~assets/img/rupiah.png">
-                                                </v-avatar>
-                                                <v-list-tile-content>
-                                                  <v-list-tile-title>Saldo: Rp. {{user.saldoUser}},-</v-list-tile-title>
-                                                </v-list-tile-content>
-                                              </v-list-tile>
-                                            </v-list> -->
+                                                                                      <v-list-tile>
+                                                                                        <v-avatar size="32px">
+                                                                                          <img size="20px" src="~assets/img/rupiah.png">
+                                                                                        </v-avatar>
+                                                                                        <v-list-tile-content>
+                                                                                          <v-list-tile-title>Saldo: Rp. {{user.saldoUser}},-</v-list-tile-title>
+                                                                                        </v-list-tile-content>
+                                                                                      </v-list-tile>
+                                                                                    </v-list> -->
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn outline small class="red--text" @click="logout">keluar</v-btn>
@@ -131,37 +133,18 @@
 </template>
 
 <script>
-// import Teacher from '~/components/teachers_page/index.vue'
 import { mapState } from 'vuex'
-
 import axios from 'axios'
+
 export default {
-    middleware: 'authenticated',
-    components: {
-        // Teacher
-    },
-    
-    async created() {
-        const CookieID = this.token
-        const { data } = await axios.get(`https://ade-project1-001.herokuapp.com/v1/users/${CookieID}`/*, {headers : {authorization: CookieID}}*/)
-        let first_name = this.dataUser.first_name = data.first_name
-        let last_name = this.dataUser.last_name = data.last_name
-        let role = this.dataUser.role = data.role
-        let username = this.dataUser.username = data.username
-        return {
-            first_name,
-            last_name,
-            role,
-            username
-        }
-    },
     data() {
         return {
             hover: false,
             drawer: true,
             miniVariant: false,
             title: 'brand.',
-            dataUser:{
+            clipped: false,
+            dataUser: {
                 first_name: '',
                 last_name: '',
                 role: '',
@@ -169,36 +152,30 @@ export default {
             }
         }
     },
+    middleware: 'authenticated',
+    components: {
+    },
+    async created() {
+        let first_name = this.dataUser.first_name = this.user.first_name
+        let last_name = this.dataUser.last_name = this.user.last_name
+        let role = this.dataUser.role = this.user.role
+        let username = this.dataUser.username = this.user.username
+        return {
+            first_name,
+            last_name,
+            role,
+            username
+        }
+    },
     computed: {
-        ...mapState(["token"])
+        ...mapState(["token", "user"])
     },
     methods: {
         logout() {
-            this.$store.dispatch('logout')
+            this.$store.dispatch('logout').then((res) => {
+                this.$router.replace('/')
+            })
         }
     }
 }
 </script>
-<style scoped>
->>>.list__tile--active {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: black;
-}
-
->>>.navigation-drawer>.list .list__tile--active>:first-child .icon {
-    color: inherit !important;
-}
-
->>>.input-group--focused .input-group__append-icon {
-    color: inherit !important;
-}
-
-
->>>.search-bar .input-group__details:after {
-    display: none !important;
-}
-
->>>.search-bar .input-group__details:before {
-    display: none !important;
-}
-</style>

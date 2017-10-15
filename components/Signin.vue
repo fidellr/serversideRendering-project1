@@ -114,18 +114,15 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 import { mapState } from 'vuex'
 import axios from 'axios'
 export default {
-  middleware: 'anonymous',
+  // middleware: 'anonymous',
   data() {
     return {
       dialog: false,
       snackbarRegis: false,
       snackbarLoginFailed: false,
-      // snackbarWrongRoleMurid: snackbarWrongRoleGuru,
-      // snackbarWrongRoleGuru: this.$store.state.snackbarWrongRoleGuru,
       e1: true,
       e2: true,
       e3: true,
@@ -156,10 +153,10 @@ export default {
         password: ''
       },
       rules: {
-        required: (value) => !!value || 'Required.',
+        required: (value) => !!value || 'Wajib di isi!.',
         email: (value) => {
           const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Format input harus e-mail.'
+          return pattern.test(value) || 'Input harus berformat email!.'
         },
       }
     }
@@ -177,7 +174,6 @@ export default {
     passwordClasses() {
       return `password-strength-${this.strength}`
     },
-    ...mapGetters(['MuridIsAuthenticated','GuruIsAuthenticated']),
     ...mapState(["snackbarWrongRoleMurid", "snackbarWrongRoleGuru","loading"])
   },
   methods: {

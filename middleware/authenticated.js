@@ -1,5 +1,5 @@
 export default function ({ app, store, route, params, error, redirect, hotReload }) {
-  if (!store.getters.GuruIsAuthenticated || !store.getters.MuridIsAuthenticated) {
+  if (!store.getters.GuruIsAuthenticated && !store.getters.MuridIsAuthenticated) {
     console.log('u have not sign in yet!')
     return redirect('/')
   }

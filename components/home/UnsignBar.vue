@@ -1,10 +1,17 @@
 <template>
     <div>
         <!-- Sidebar -->
-        <v-navigation-drawer class="blue-grey lighten-2" persistent clipped :mini-variant="miniVariant" v-model="drawer" enable-resize-watcher>
-            <v-list class="blue-grey lighten-2 ">
+        <v-navigation-drawer 
+        class="grey lighten-3" 
+        persistent 
+        clipped
+        :mini-variant="miniVariant" 
+        v-model="drawer"
+        style="margin-top:65px;"
+        >
+            <v-list class="grey lighten-3 ">
                 <!-- Home -->
-                <v-list-tile nuxt to="/" exact>
+                <v-list-tile router to="/" exact>
                     <v-list-tile-action>
                         <v-icon>home</v-icon>
                     </v-list-tile-action>
@@ -15,7 +22,7 @@
                 
                 <!-- Home -->
                 <!-- Kategori -->
-                <v-list-tile nuxt to="/kategori">
+                <v-list-tile router to="/kategori">
                     <v-list-tile-action>
                         <v-icon>class</v-icon>
                     </v-list-tile-action>
@@ -26,7 +33,7 @@
                 
                 <!-- Kategori -->
                 <!-- Tentang -->
-                <v-list-tile nuxt to="/tentang">
+                <v-list-tile router to="/tentang">
                     <v-list-tile-action>
                         <v-icon>location_city</v-icon>
                     </v-list-tile-action>
@@ -37,7 +44,7 @@
                 
                 <!-- Tentang -->
                 <!-- Panduan -->
-                <v-list-tile nuxt to="/panduan">
+                <v-list-tile router to="/panduan">
                     <v-list-tile-action>
                         <v-icon>collections_bookmark</v-icon>
                     </v-list-tile-action>
@@ -53,17 +60,15 @@
         <!-- Sidebar -->
 
         <!-- Toolbar -->
-        <v-toolbar class="green accent-1" fixed>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer">
+        <v-toolbar class="grey darken-3" fixed>
+            <v-toolbar-side-icon class="white--text" @click="drawer = !drawer">
             </v-toolbar-side-icon>
             <v-btn icon @click.stop="miniVariant = !miniVariant">
-                <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+                <v-icon class="white--text" v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
             </v-btn>
-            <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-toolbar-title class="white--text" v-text="title"></v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-layout column align-center>
-                <v-text-field solo label="Saya mau belajar..." class="search-bar" append-icon="search"></v-text-field>
-            </v-layout>
+                <v-text-field column align-center solo label="Cari..." class="search-bar" append-icon="search"></v-text-field>
             <v-spacer></v-spacer>
 
             <SignIn />
@@ -73,7 +78,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import SignIn from '~/components/Signin.vue'
 export default {
     components: {
@@ -81,10 +85,11 @@ export default {
     },
     data() {
         return {
-            hover: false,
+            // hover: false,
             drawer: true,
             miniVariant: false,
-            title: 'Brand'
+            clipped: false,
+            title: 'brand.'
 
         }
     }

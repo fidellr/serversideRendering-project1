@@ -4,12 +4,12 @@
       <v-list-tile-title class="body-2">
         &nbsp;&nbsp;{{fullKategori.title}}
       </v-list-tile-title>
-      <v-tabs class="green accent-3">
-        <v-tabs-bar class="green accent-3" grow>
+      <v-tabs class="grey lighten-3">
+        <v-tabs-bar class="grey lighten-3" grow>
           <v-tabs-item v-for="namaDoang in fullKategori.subKategori.nama" :key="namaDoang" :href="'#'+namaDoang" >
             <v-btn small flat nuxt to="" :id="namaDoang">{{namaDoang}}</v-btn>
           </v-tabs-item>
-          <v-tabs-slider class="yellow"></v-tabs-slider>
+          <v-tabs-slider class="grey darken-2"></v-tabs-slider>
         </v-tabs-bar>
       </v-tabs>
 
@@ -23,7 +23,7 @@ export default {
     ...mapGetters({
       fullKategori: 'ambilFullKategori'
     })
-  },
+  },  
   data() {
     return {
     }

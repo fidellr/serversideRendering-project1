@@ -1,12 +1,15 @@
 <template>
-    <!-- <Teacher/> -->
-    <v-app>
-        <v-card>
-            <v-card-title>
-                <h3>ini halaman murid</h3>
-            </v-card-title>
-        </v-card>
-    </v-app>
+    <v-container grid-list-xs>
+        <v-layout column align-center wrap>
+            <v-flex xs10 offset-xs3>
+                <v-card>
+                    <v-card-title>
+                        <h3>ini halaman murid</h3>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
@@ -15,14 +18,8 @@ import { mapGetters } from 'vuex'
 export default {
     middleware: 'authenticated',
     mounted() {
-        // const { token, secret } = extractInfoFromHash()
-        // if (!checkSecret(secret) || !token) {
-        //     console.error('something happened with the sign in request')
-        // }
-        // setToken(token)
     },
     computed: {
-        ...mapGetters(['loggedUser'])
     }
 }
 </script>

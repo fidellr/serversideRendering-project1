@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Cookie from 'js-cookie'
 export default {
     addUser({ commit }, payload) {
         let newUser = {
@@ -25,9 +24,10 @@ export default {
         }
         const { data } = await axios.post('https://ade-project1-001.herokuapp.com/v1/signin', userData)
         if (data.data.role === 'Guru') {
-            const idUser = data.data._id
+            const userToken = data.token
+            commit('SET_TOKEN', userToken)
             commit('SET_USER', data.data)
-            commit('SET_tokenForID', idUser)
+            commit('LOGIN_SUCCESS')
         } else if (data.data.role === 'Murid') {
             commit('SET_GuruAuthError')
         } else {
@@ -42,8 +42,9 @@ export default {
         }
         const { data } = await axios.post('https://ade-project1-001.herokuapp.com/v1/signin', userData)
         if (data.data.role === 'Murid') {
-            const idUser = data.data._id
-            commit('SET_tokenForID', idUser)
+            const userToken = data.token
+            // console.log(idUser)
+            commit('SET_TOKEN', userToken)
             commit('SET_USER', data.data)
             commit('LOGIN_SUCCESS')
 
@@ -56,6 +57,7 @@ export default {
     },
     logout({ commit }) {
         commit('LOGOUT')
+
     }
 
 }

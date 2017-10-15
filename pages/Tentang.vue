@@ -14,3 +14,16 @@
     </v-layout>
   </v-container>
 </template>
+<script>
+export default {
+  //  layout(context) {
+  //       if (context.store.getters.GuruIsAuthenticated) {
+  //           return 'teacher'
+  //       } else if (context.store.getters.MuridIsAuthenticated) {
+  //           return 'student'
+  //       } else {
+  //           return 'default'
+  //       }
+  //   }
+}
+</script>

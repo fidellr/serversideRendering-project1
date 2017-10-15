@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-navigation-drawer class="blue-grey lighten-2 " persistent clipped :mini-variant="miniVariant" v-model="drawer" enable-resize-watcher>
+        <v-navigation-drawer class="blue-grey lighten-2 " persistent clipped :mini-variant="miniVariant" v-model="drawer" style="margin-top:65px;">
             <v-list class="blue-grey lighten-2">
                 <!-- Home -->
                 <v-list-tile nuxt to="/" exact>
@@ -142,12 +142,10 @@ export default {
     },
     
     async created() {
-        const CookieID = this.token
-        const { data } = await axios.get(`https://ade-project1-001.herokuapp.com/v1/users/${CookieID}`)
-        let first_name = this.dataUser.first_name = data.first_name
-        let last_name = this.dataUser.last_name = data.last_name
-        let role = this.dataUser.role = data.role
-        let username = this.dataUser.username = data.username
+        let first_name = this.dataUser.first_name = this.user.first_name
+        let last_name = this.dataUser.last_name = this.user.last_name
+        let role = this.dataUser.role = this.user.role
+        let username = this.dataUser.username = this.user.username
         return {
             first_name,
             last_name,
@@ -170,7 +168,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["token"])
+        ...mapState(["token","user"])
     },
     methods: {
         logout() {

@@ -6,11 +6,14 @@ export default {
     ADD_USER(state, payload) {
         state.users = payload
     },
-    SET_tokenForID(state, idForToken) {
-        state.token = idForToken || null
+    SET_TOKEN(state, token) {
+        state.token = token || null
         if (process.browser) {
-            Cookie.set('ID', idForToken)
+            Cookie.set('token', token)
         }
+    },
+    SET_LOADCATEGORIES(state, payload) {
+        state.kategoriHome = payload
     },
     SET_GuruAuthError(state) {
         state.snackbarWrongRoleGuru = true
@@ -27,8 +30,10 @@ export default {
     },
     LOGOUT(state) {
         state.token = null
+        state.user = null
         if (process.browser) {
-            Cookie.remove('ID')
+            Cookie.remove('token')
+
         }
     }
     // if (state.user.role === 'Guru') {

@@ -1,12 +1,10 @@
 <template>
     <!-- <Teacher/> -->
-    <v-app>
-        <v-card>
-            <v-card-title>
-                <h3>ini halaman guru</h3>
-            </v-card-title>
-        </v-card>
-    </v-app>
+    <v-card>
+        <v-card-title>
+            <h3>ini halaman guru</h3>
+        </v-card-title>
+    </v-card>
 </template>
 
 <script>
@@ -20,7 +18,7 @@ export default {
         //     console.error('something happened with the sign in request')
         // }
         // setToken(token)
-        
+
     },
     computed: {
         ...mapGetters(['loggedUser'])

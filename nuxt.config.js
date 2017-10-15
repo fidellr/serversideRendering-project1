@@ -3,9 +3,6 @@ module.exports = {
   /*
   ** Headers of the page
   */
-  // env: {
-  //   _id: process.env._id
-  // },
   head: {
     title: "project-1",
     meta: [
@@ -30,20 +27,15 @@ module.exports = {
     middleware: ['check-auth']
   },
   plugins: [
-    // {src: "~/plugins/vue-awesome.js", ssr: false},
-    { src: "~/plugins/vuetify.js", ssr: true },
-    // {src: '~/plugins/babel-plugin.js'},
-    // {src: "~/plugins/dateFilter.js"},
-    // {src: "~/plugins/chart.js", ssr: true}
+    { src: "~/plugins/vuetify.js"},
   ],
   css: [
     { src: "~/assets/style/app.styl", ssr: true },
-    // {src: "swiper/dist/css/swiper.css"}
   ],
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: "#3B8070" },
+  loading: { color: "#212121" },
   /*
   ** Build configuration
   */
@@ -53,8 +45,8 @@ module.exports = {
     //     fs: 'empty', net: 'empty', tls: 'empty', module: 'empty'
     //   }
     // },
-    vendor: ["vuetify", "axios", "chart.js", "js-cookie"],
-    extractCSS: true
+    vendor: ["vuetify", "axios", "js-cookie","~/plugins/vuetify.js"],
+    extractCSS: true,
     /*
     ** Run ESLINT on save
     */

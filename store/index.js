@@ -2,57 +2,18 @@ import Vuex from "vuex";
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
+// import VuexPersistence from 'vuex-persist'
 const store = () =>
   new Vuex.Store({
     state: {
       sidebar: false,
-      kategori: [
-        {
-          title: "Teknik",
-          subkategori: [
-            { nama: "Arsitektur", to: "" },
-            { nama: "Teknik Bioproses", to: "" },
-            { nama: "Teknik Elektro", to: "" },
-            { nama: "Teknik Industri", to: "" },
-            { nama: "Informatika", to: "" },
-            { nama: "Teknik Kimia", to: "" },
-            { nama: "Teknik Kimia", to: "" },
-            { nama: "Teknik Lingkungan", to: "" },
-            { nama: "Teknik Metalurgi & Material", to: "" },
-            { nama: "Teknik Mesin", to: "" },
-            { nama: "Teknik Lingkungan", to: "" }
-          ],
-          foto: "./assets/img/teknik/teknik-icon.png"
-        },
-        {
-          title: "Bisnis",
-          subkategori: [
-            { nama: "Kewirausahaan", to: "" },
-            { nama: "Manajemen", to: "" }
-          ],
-          foto: "./assets/img/bisnis/business-icon.png"
-        },
-        {
-          title: "Ekonomi",
-          subkategori: [
-            { nama: "Teori & Praktek Ekonomi", to: "" },
-            { nama: "Akuntansi", to: "" },
-            { nama: "Keuangan", to: "" },
-            { nama: "Perpajakan", to: "" }
-          ],
-          foto: "./assets/img/ekonomi/ekonomi-icon.png"
-        },
-        {
-          title: "Desain & Seni",
-          foto: "./assets/img/desain-seni/desain-seni.png"
-        }
-      ],
+      kategoriHome: null,
       users: {},
       token: null,
       user: null,
       snackbarWrongRoleMurid: false,
       snackbarWrongRoleGuru: false,
-      loading: false,
+     loading: false,
       fullKategori: [
         {
           title: "Teknik",
@@ -154,6 +115,7 @@ const store = () =>
     },
     actions,
     mutations,
-    getters
+    getters,
+    // plugins: [vuexCookie.plugin]
   });
-export default store;
+export default store
